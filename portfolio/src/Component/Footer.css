@@ -217,16 +217,16 @@
 
     .FooterMain {
         grid-template-columns: 1fr;
-        gap: 5vh;
+        gap: 2vh;
     }
 
     .FooterSocialIcon:hover {
-        transform: translateY(-4px) scale(1.05); /* no rotate on touch */
+        transform: translateY(-4px) scale(1.05); 
     }
 
     .FooterBottom {
         flex-direction: column;
-        gap: 1vh;
+      
         text-align: center;
     }
 }

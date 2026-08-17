@@ -19,9 +19,9 @@ const About = () => {
         <div className="AboutContent">
           <div className="Text ">
             <h1>
-              I turn ideas into<br />
-              things you can<br />
-              actually use.
+              I turn ideas into
+              things you can actually use.
+              
             </h1>
           </div>
 

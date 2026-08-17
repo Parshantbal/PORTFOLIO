@@ -106,12 +106,12 @@
 
     .About {
         min-height: auto;
-        padding: 8vh 6vw;
+        padding: 8vh 4vw;
     }
 
     .AboutGrid {
         grid-template-columns: 1fr;
-        gap: 2vh;   /* 7vh se 2vh */
+        gap: 3vh;   /* 7vh se 2vh */
     }
 
     .AboutImg {
@@ -121,14 +121,14 @@
     }
 
     .Text {
-        font-size: 1.6rem;
-        line-height: 1.2;
+        font-size: 1.3rem;
+        line-height: 1.4;
            margin-left: 6vw;
     }
 
     .AboutMe {
-        margin-top: 2vh;
-        font-size: 0.9rem;
+        margin-top: 1.7vh;
+        font-size: 0.95rem;
         line-height: 1.5;
         margin-left: 6vw;
     }

@@ -22,7 +22,7 @@ export default function ScrollReveal() {
       const scrollable = rect.height - viewportH;
 
       const REVEAL_PORTION =
-        window.innerWidth <= 768 ? 0.65 : 0.6;
+        window.innerWidth <= 768 ? 0.50 : 0.6;
       const revealDistance = scrollable * REVEAL_PORTION;
 
       let progress = -rect.top / revealDistance;

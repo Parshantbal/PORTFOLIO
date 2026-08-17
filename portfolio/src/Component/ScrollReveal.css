@@ -1,0 +1,85 @@
+.scroll-reveal-demo {
+  --bg: #E9E8D5;
+  --panel: #10141c;
+  --curtain: #E9E8D5;
+  --text: #e7ebf1;
+  --muted: #8a93a3;
+  --accent: #5eead4;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+
+.page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.page--hero {
+  background: var(--bg);
+}
+
+.page--after {
+  background: var(--panel);
+}
+
+.page-inner {
+  max-width: 560px;
+
+}
+
+.pin-wrap {
+  position: relative;
+  height: 250vh;
+}
+
+.pin-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.reveal-content {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--curtain);
+  z-index: 5;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* keep the sticky stage + its children on their own GPU layer */
+.pin-stage,
+.reveal-content {
+  transform: translateZ(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .pin-stage {
+    height: auto;
+    min-height: 100svh;
+  }
+
+}

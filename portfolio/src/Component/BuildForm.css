@@ -1,0 +1,282 @@
+.BuildNavSticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #E9E8D5; 
+}
+
+.BuildPage {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #0B0F14;
+   
+    padding: 6vh 5vw 10vh 5vw;
+    display: flex;
+    justify-content: center;
+}
+
+
+.BuildGlow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.BuildGlow--1 {
+    width: 320px;
+    height: 320px;
+ 
+    opacity: 0.18;
+    top: -60px;
+    left: 5%;
+}
+
+.BuildGlow--2 {
+    width: 260px;
+    height: 260px;
+
+    opacity: 0.18;
+    bottom: -40px;
+    right: 8%;
+}
+
+.BuildInner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 720px;
+}
+
+.BuildBack {
+    display: inline-block;
+    font-family: "font2";
+    font-size: 0.9rem;
+    color: #b9c2cf;
+    text-decoration: none;
+    margin-bottom: 5vh;
+    transition: color 0.25s ease;
+}
+
+.BuildBack:hover {
+    color: #E9E8D5;
+}
+
+.BuildHeader {
+    margin-bottom: 6vh;
+}
+
+.BuildHeader .AboutBox {
+    background-color: #E9E8D5;
+    border-color: #8A3534;
+}
+
+.BuildHeader .AboutSection p {
+    color: #E9E8D5;
+    margin: 0;
+}
+
+.BuildHeading {
+    font-family: "font1";
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 1.5vh 0 1.5vh 0;
+    line-height: 1.1;
+}
+
+.BuildWord {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.BuildWordInner {
+    display: inline-block;
+}
+
+.BuildIntro {
+    font-family: "font2";
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #b9c2cf;
+    max-width: 500px;
+    margin: 0;
+}
+
+.BuildFormEl {
+    display: flex;
+    flex-direction: column;
+    gap: 2.6vh;
+}
+
+.BuildRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6vw;
+}
+
+.BuildFieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.BuildFieldGroup label {
+    font-family: "font1";
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #E9E8D5;
+}
+
+.BuildOptional {
+    color: #7c8896;
+    font-family: "font2";
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.75rem;
+}
+
+.BuildFieldGroup input,
+.BuildFieldGroup select,
+.BuildFieldGroup textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "font2";
+    font-size: 0.95rem;
+    color: #E9E8D5;
+
+    background-color: rgba(233, 232, 213, 0.06);
+    border: 1.5px solid rgba(233, 232, 213, 0.18);
+    border-radius: 12px;
+    padding: 1.5vh 1.2vw;
+
+    outline: none;
+    resize: none;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.BuildFieldGroup select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b9c2cf' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1vw center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.BuildFieldGroup select option {
+    background-color: #101B29;
+    color: #E9E8D5;
+}
+
+.BuildFieldGroup input::placeholder,
+.BuildFieldGroup textarea::placeholder {
+    color: #7c8896;
+}
+
+.BuildFieldGroup input:focus,
+.BuildFieldGroup select:focus,
+.BuildFieldGroup textarea:focus {
+    border-color: #8A3534;
+    background-color: rgba(233, 232, 213, 0.1);
+}
+
+.BuildSubmitBtn {
+    width: 100%;
+    padding: 1.8vh 0;
+    margin-top: 0.5vh;
+    background-color: #E9E8D5;
+    color: #0B0F14;
+    border: none;
+    border-radius: 999px;
+    font-family: "font1";
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.BuildSubmitBtn:hover:not(:disabled) {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.BuildSubmitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.BuildStatus {
+    font-family: "font2";
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.BuildStatus--error {
+    color: #e08a88;
+}
+
+
+.BuildSuccess {
+    text-align: center;
+    padding: 6vh 0;
+}
+
+.BuildSuccess h2 {
+    font-family: "font1";
+    font-size: 2rem;
+    color: #ffffff;
+    margin: 0 0 2vh 0;
+}
+
+.BuildSuccess p {
+    font-family: "font2";
+    font-size: 1rem;
+    color: #b9c2cf;
+    margin: 0 0 4vh 0;
+}
+
+.BuildSuccessBtn {
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+    .BuildPage {
+        padding: 5vh 6vw 8vh 6vw;
+    }
+
+    .BuildHeading {
+        font-size: 2rem;
+    }
+
+    .BuildIntro {
+        font-size: 0.9rem;
+    }
+
+    .BuildRow {
+        grid-template-columns: 1fr;
+        gap: 2vh;
+    }
+
+    .BuildFormEl {
+        gap: 2.2vh;
+    }
+
+    .BuildFieldGroup input,
+    .BuildFieldGroup select,
+    .BuildFieldGroup textarea {
+        padding: 1.5vh 4vw;
+        font-size: 0.9rem;
+    }
+}

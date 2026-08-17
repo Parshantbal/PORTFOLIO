@@ -1,0 +1,232 @@
+.Footer {
+    position: relative;
+    overflow: hidden;
+    padding: 10vh 6vw 4vh;
+    background-color: #0B0F14;
+}
+
+.FooterGlow {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50vw;
+    height: 40vh;
+    max-width: 600px;
+
+    filter: blur(50px);
+    pointer-events: none;
+}
+
+.FooterCTA {
+    position: relative;
+    text-align: center;
+    margin-bottom: 6vh;
+}
+
+.FooterCTALabel {
+    font-family: "font2";
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8a93a3;
+    margin: 0 0 1.5vh 0;
+}
+
+.FooterCTATitle {
+    display: inline-block;
+    font-family: "font1";
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #E9E8D5;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+}
+
+.FooterDivider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(233, 232, 213, 0.2),
+        transparent
+    );
+    margin-bottom: 6vh;
+}
+
+.FooterMain {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 4vw;
+    margin-bottom: 6vh;
+}
+
+.FooterBrand h3 {
+    font-family: "font1";
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: #E9E8D5;
+    margin: 0 0 1.2vh 0;
+}
+
+.FooterBrand p {
+    font-family: "font2";
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #8a93a3;
+    max-width: 300px;
+    margin: 0;
+}
+
+.FooterColTitle {
+    display: block;
+    font-family: "font2";
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8A3534;
+    margin-bottom: 2vh;
+}
+
+.FooterNav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4vh;
+    padding: 0;
+    margin: 0;
+}
+
+.FooterNav a {
+    font-family: "font2";
+    font-size: 0.95rem;
+    color: #E9E8D5;
+    text-decoration: none;
+    opacity: 0.85;
+    position: relative;
+    width: fit-content;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.FooterNav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: #8A3534;
+    transition: width 0.3s ease;
+}
+
+.FooterNav a:hover {
+    opacity: 1;
+    color: #8A3534;
+}
+
+.FooterNav a:hover::after {
+    width: 100%;
+}
+
+
+.FooterSocialIcons {
+    display: flex;
+    gap: 1vw;
+}
+
+.FooterSocialIcon {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(233, 232, 213, 0.2);
+    color: #E9E8D5;
+    text-decoration: none;
+    transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.FooterSocialIcon svg {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    z-index: 2;
+}
+
+.FooterSocialIcon::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--brand-color) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.FooterSocialIcon:hover {
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+    transform: translateY(-5px) rotate(-6deg) scale(1.08);
+    box-shadow: 0 0 20px 4px color-mix(in srgb, var(--brand-color) 55%, transparent);
+}
+
+.FooterSocialIcon:hover::before {
+    opacity: 0.3;
+}
+
+.FooterBottom {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3vh;
+    border-top: 1px solid rgba(233, 232, 213, 0.1);
+}
+
+.FooterBottom p {
+    font-family: "font2";
+    font-size: 0.8rem;
+    color: #8a93a3;
+    margin: 0;
+}
+
+
+@media (max-width: 1024px) {
+    .FooterMain {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 5vh;
+    }
+
+    .FooterBrand {
+        grid-column: 1 / -1;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .Footer {
+        padding: 8vh 6vw 4vh;
+    }
+
+    .FooterMain {
+        grid-template-columns: 1fr;
+        gap: 5vh;
+    }
+
+    .FooterSocialIcon:hover {
+        transform: translateY(-4px) scale(1.05); /* no rotate on touch */
+    }
+
+    .FooterBottom {
+        flex-direction: column;
+        gap: 1vh;
+        text-align: center;
+    }
+}

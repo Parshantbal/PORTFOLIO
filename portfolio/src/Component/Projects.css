@@ -1,0 +1,232 @@
+.Projects {
+    padding: 12vh 5vw;
+    box-sizing: border-box;
+    background-color: #E9E8D5;
+}
+
+
+.ProjectsHeader {
+
+    margin-bottom: 8vh;
+}
+.AboutSection p{
+    font-size: 1.5rem;
+    font-family: "font1";
+}
+
+
+
+.ProjectList {
+    display: flex;
+    flex-direction: column;
+    gap: 14vh;
+    font-family: "font1";
+}
+
+.ProjectCard {
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    align-items: center;
+    gap: 6vw;
+}
+
+
+.ProjectCard--reverse {
+    grid-template-columns: 1fr 45%;
+}
+
+.ProjectCard--reverse .ProjectImgWrap {
+    order: 2;
+}
+
+.ProjectCard--reverse .ProjectContent {
+    order: 1;
+}
+
+.ProjectImgWrap {
+    border: 2px solid #102A43;
+    box-shadow: 6px 6px 0px #000000;
+    overflow: hidden;
+}
+ 
+.ProjectImg {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.ProjectImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+     object-position: top center;
+ 
+    display: block;
+}
+
+
+
+.ProjectContent {
+    max-width: 560px;
+}
+
+.ProjectIndex {
+    font-family: "font2";
+    font-size: 0.9rem;
+    color: #8A3534;
+    letter-spacing: 0.1em;
+    margin: 0 0 1.5vh 0;
+}
+
+.ProjectTitle {
+    font-family: "font1";
+    font-size: 2.4rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin: 0 0 0.5vh 0;
+}
+
+.ProjectSubtitle {
+    font-family: "font2";
+    font-size: 1rem;
+    color: #8a93a3;
+    margin: 0 0 2.5vh 0;
+}
+
+.ProjectDescription {
+    font-family: "font2";
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 3vh 0;
+}
+
+
+.ProjectTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 3.5vh;
+}
+
+.ProjectTag {
+    font-family: "font2";
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border: 1.5px solid #102A43;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.ProjectTag:nth-child(6n + 1):hover {
+    background-color: #8A3534; 
+    border-color: #8A3534;
+    color: #ffffff;
+}
+ 
+.ProjectTag:nth-child(6n + 2):hover {
+    background-color: #102A43; 
+    border-color: #102A43;
+    color: #ffffff;
+}
+ 
+.ProjectTag:nth-child(6n + 3):hover {
+    background-color: #2F6F4E;
+    border-color: #2F6F4E;
+    color: #ffffff;
+}
+ 
+.ProjectTag:nth-child(6n + 4):hover {
+    background-color: #B08900; 
+    border-color: #B08900;
+    color: #ffffff;
+}
+ 
+
+
+.ProjectLinks {
+    display: flex;
+    gap: 16px;
+}
+
+.ProjectBtn {
+    font-family: "font1";
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: #102A43;
+    padding: 12px 24px;
+    border: 2px solid #102A43;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    display: inline-block;
+}
+
+.ProjectBtn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #000000;
+}
+
+.ProjectBtn--filled {
+    background-color: #8a3534;
+    color: #ffffff;
+}
+
+.ProjectBtn--filled:hover {
+    background-color: #72302c;
+    border-color: #8A3534;
+}
+
+.ProjectBtnGithub {
+       font-family: "font1";
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: #102A43;
+    padding: 12px 24px;
+    border: 2px solid #102A43;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    display: inline-block;
+
+}
+
+.ProjectBtnGithub:hover {
+    background-color: #f9f6c7;;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #000000;
+}
+
+
+@media (max-width: 768px) {
+    .Projects {
+        padding: 8vh 6vw;
+    }
+
+    .ProjectList {
+        gap: 8vh;
+    }
+
+    .ProjectCard,
+    .ProjectCard--reverse {
+        grid-template-columns: 1fr;
+        gap: 4vh;
+    }
+
+    .ProjectCard--reverse .ProjectImgWrap,
+    .ProjectCard--reverse .ProjectContent {
+        order: 0;
+    }
+
+    .ProjectImg {
+       aspect-ratio: 16 / 10;
+    }
+
+    .ProjectTitle {
+        font-size: 1.8rem;
+    }
+
+    .ProjectDescription {
+        font-size: 0.95rem;
+    }
+
+    .ProjectContent {
+        max-width: 100%;
+    }
+}
+ 

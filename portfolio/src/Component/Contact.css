@@ -1,0 +1,368 @@
+.Contact {
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    background-color: #0B0F14;
+  
+    padding: 6vh 5vw;
+
+    display: flex;
+    align-items: flex-start;
+
+    overflow: hidden;
+}
+
+
+
+.ContactGrid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 5vw;
+
+    align-items: start;
+}
+
+
+
+.Contact .ContactBigHeading {
+    font-family: "font1";
+
+    font-size: clamp(3rem, 8vw, 7rem);
+
+    line-height: 0.95;
+
+    font-weight: 900;
+
+    margin: 0 0 5vh 0;
+
+    color: #FFFFFF !important;
+
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.ContactIcons {
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+.ContactIconBtn {
+    position: relative;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: rgba(233, 232, 213, 0.06);
+
+    border: 1.5px solid rgba(233, 232, 213, 0.25);
+
+    border-radius: 50%;
+
+    color: #E9E8D5;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.ContactIconBtn:hover {
+    transform: translateY(-3px);
+
+    background-color: #E9E8D5;
+
+    border-color: #E9E8D5;
+
+    color: var(--brand-color);
+}
+
+.ContactIconSvg {
+    width: 18px;
+
+    height: 18px;
+
+    display: flex;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.ContactForm {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-top: 25vh;
+
+    gap: 20px;
+}
+
+.ContactFormRow {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.ContactForm input,
+.ContactForm textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    font-family: "font2";
+
+    font-size: 0.95rem;
+
+    color: #E9E8D5;
+
+    background-color: rgba(233, 232, 213, 0.06);
+
+    border: 1.5px solid rgba(233, 232, 213, 0.18);
+
+    border-radius: 14px;
+
+    padding: 16px 18px;
+
+    outline: none;
+
+    resize: none;
+
+    transition:
+        border-color 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.ContactForm input::placeholder,
+.ContactForm textarea::placeholder {
+    color: #8894a3;
+}
+
+.ContactForm input:focus,
+.ContactForm textarea:focus {
+    border-color: #8A3534;
+
+    background-color: rgba(233, 232, 213, 0.1);
+}
+
+.ContactForm textarea {
+    min-height: 160px;
+}
+
+.ContactSubmitBtn {
+    width: 100%;
+
+    padding: 16px 0;
+
+    background-color: #E9E8D5;
+
+    color: #0B0F14;
+
+    border: none;
+
+    border-radius: 999px;
+
+    font-family: "font1";
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.ContactSubmitBtn:hover:not(:disabled) {
+    background-color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+.ContactSubmitBtn:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+}
+
+.FormStatus {
+    font-family: "font2";
+
+    font-size: 0.85rem;
+
+    margin: 0;
+}
+
+.FormStatus--sent {
+    color: #6fbd8a;
+}
+
+.FormStatus--error {
+    color: #e08a88;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+
+    .Contact {
+        min-height: 100vh;
+
+        overflow: visible;
+
+        padding: 8vh 6vw;
+    }
+
+    .ContactGrid {
+        grid-template-columns: 1fr;
+
+        gap: 5vh;
+    }
+
+    .ContactForm {
+        margin-top: 0;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .Contact {
+        padding: 7vh 5vw;
+    }
+
+    .ContactGrid {
+        grid-template-columns: 1fr;
+
+        gap: 4vh;
+    }
+
+    .Contact .ContactBigHeading {
+        font-size: clamp(2.2rem, 10vw, 3.5rem);
+
+        line-height: 1;
+
+        margin-bottom: 3vh;
+    }
+
+    .ContactIconBtn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .ContactIconSvg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .ContactForm {
+        margin-top: 0;
+
+        width: 100%;
+
+        gap: 16px;
+    }
+
+    .ContactFormRow {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .ContactForm input,
+    .ContactForm textarea {
+        padding: 14px 16px;
+
+        font-size: 0.9rem;
+    }
+
+    .ContactForm textarea {
+        min-height: 140px;
+    }
+
+    .ContactSubmitBtn {
+        padding: 14px 0;
+
+        font-size: 0.95rem;
+    }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    .Contact {
+        padding: 6vh 5vw;
+    }
+
+    .Contact .ContactBigHeading {
+        font-size: 2rem;
+    }
+
+    .ContactIcons {
+        gap: 10px;
+    }
+
+    .ContactIconBtn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .ContactForm input,
+    .ContactForm textarea {
+        font-size: 0.85rem;
+    }
+
+    .ContactSubmitBtn {
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================
+   VERY SMALL DEVICES
+========================= */
+
+@media (max-width: 360px) {
+
+    .Contact .ContactBigHeading {
+        font-size: 1.8rem;
+    }
+
+    .ContactIconBtn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .ContactIconSvg {
+        width: 14px;
+        height: 14px;
+    }
+}

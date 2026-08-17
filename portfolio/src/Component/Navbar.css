@@ -1,0 +1,272 @@
+body {
+    background-color: #E9E8D5;
+}
+
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: "font1";
+
+    border-bottom: 2px solid black;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 35px;
+    width: 35px;
+    background-color: #8a3534;
+    color: #E9E8D5;
+    font-size: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 9vw;
+    margin-bottom: 2.5vh;
+    margin-top: 2vh;
+}
+
+.logoName {
+    font-family: "font1";
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 2.5vh;
+    margin-top: 2vh;
+    white-space: nowrap;
+}
+
+.allAbout {
+    text-decoration: none;
+    margin-top: 2vh;
+    margin-bottom: 2.5vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.allAbout a {
+    text-decoration: none;
+    color: #01070c;
+    white-space: nowrap;
+}
+
+.allAbout button {
+    width: 9vw;
+    height: 6vh;
+    min-width: 110px;
+    min-height: 40px;
+    margin-right: 9vw;
+    margin-left: 1vw;
+    background-color: #8a3534;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0px #000;
+    font-family: "font1";
+    cursor: pointer;
+    color: #E9E8D5;
+    white-space: nowrap;
+}
+.allAbout a {
+    position: relative;
+    text-decoration: none;
+}
+
+.allAbout a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+
+    width: 0;
+    height: 2px;
+
+    background-color: #8A3534;
+
+    transition: width 0.3s ease;
+}
+
+.allAbout a:hover::after {
+    width: 100%;
+}
+.Resumebtn:hover {
+    background-color: #72302c;
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px #000;
+}
+
+
+@media (max-width: 1024px) {
+    .logo {
+        margin-left: 5vw;
+    }
+
+    .allAbout {
+        gap: 4vw;
+    }
+
+    .allAbout button {
+        width: auto;
+        padding: 0 20px;
+        margin-right: 5vw;
+    }
+}
+
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    margin-right: 6vw;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #01070c;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger--open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger--open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger--open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================
+   MOBILE SLIDE-IN MENU
+========================= */
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 75%;
+    max-width: 340px;
+    background-color: #E9E8D5;
+    border-left: 2px solid black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4.5vh;
+    padding: 5vh 8vw 6vh 8vw;
+    box-sizing: border-box;
+
+    font-family: "font1";
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    z-index: 100;
+}
+
+.mobileMenu--open {
+    transform: translateX(0);
+}
+
+.mobileMenuBrand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3vh;
+    padding-bottom: 3vh;
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+
+.mobileMenuBrand .logo {
+    height: 38px;
+    width: 38px;
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.mobileMenuBrand .logoName {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.mobileMenu a {
+    text-decoration: none;
+    color: #01070c;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+}
+
+.mobileResumeBtn {
+    width: 100%;
+    padding: 14px 0;
+    margin-top: 3vh;
+    background-color: #8a3534;
+    color: #E9E8D5;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0px #000;
+    font-family: "font1";
+    font-size: 0.85rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+}
+
+.mobileResumeBtn:hover {
+    background-color: #72302c;
+    box-shadow: 6px 6px 0px #000;
+}
+
+.mobileMenuOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 90;
+}
+
+/* =========================
+   MOBILE RESPONSIVE — swap horizontal links for hamburger
+========================= */
+@media (max-width: 768px) {
+    .allAbout {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .logo {
+        margin: 0;
+        margin-left: 6vw;
+        height: 32px;
+        width: 32px;
+        font-size: 1.05rem;
+    }
+
+    .logoName {
+        margin: 0;
+        font-size: 1.15rem;
+    }
+
+    .brand {
+        margin: 1.5vh 0;
+    }
+}

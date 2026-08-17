@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: "font2";
+    src: url("/gotham-book-Bnaws0Ef.woff2");
+}
+
+@font-face {
+    font-family: "font1";
+    src: url("/gotham-medium-0VT3RO8I.woff2");
+}
+html {
+  scroll-behavior: auto;
+}
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+
+ 
+  
+  

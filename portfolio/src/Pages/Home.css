@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Quicksand:wght@300..700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+
+  background-color: #0B0F14;
+  background-image:
+    radial-gradient(circle at 20% 25%, rgba(138, 53, 52, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(16, 42, 67, 0.4), transparent 50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.LoaderGlow {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 700px;
+  max-height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(138, 53, 52, 0.15), transparent 70%);
+  filter: blur(40px);
+  animation: pulseGlow 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.content {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vh;
+}
+
+
+.LoaderWord {
+  display: flex;
+  gap: 0.3vw;
+  font-family: "font1";
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin: 0;
+  overflow: hidden;
+}
+
+.LoaderLetter {
+  display: inline-block;
+  color: #E9E8D5;
+  text-shadow:
+    0 0 20px rgba(138, 53, 52, 0.6),
+    0 0 40px rgba(138, 53, 52, 0.25);
+  will-change: transform, opacity;
+}
+
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.LoadingLabel {
+  font-family: "font2";
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8a93a3;
+  white-space: nowrap;
+}
+
+.LoadingPercent {
+  font-family: "font1";
+  font-size: 1rem;
+  font-weight: 700;
+  color: #E9E8D5;
+  min-width: 42px;
+  text-align: left;
+}
+
+
+@media (max-width: 768px) {
+  .LoaderWord {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .LoaderWord {
+    font-size: 1.7rem;
+    gap: 0.5vw;
+  }
+}

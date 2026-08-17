@@ -18,7 +18,7 @@
     font-family: "font2";
     font-size: 1rem;
 
-    margin-bottom: 7vh;
+    margin-bottom: 3vh;
     transform: translate(-3vw, -3vh);
 }
 
@@ -105,7 +105,7 @@
 @media (max-width: 768px) {
 
     .About {
-        min-height: auto;
+        min-height: 100vh;
         padding: 6vh 2vw;
     }
 
@@ -123,16 +123,18 @@
     }
 
     .Text {
-        font-size: 1.3rem;
+        font-size: 1.49rem;
         line-height: 1.4;
            margin-left: 6vw;
     }
 
     .AboutMe {
-        margin-top: 1.7vh;
-        font-size: 0.9rem;
+        margin-top: 1.9vh;
+        font-size: 1rem;
         line-height: 1.5;
         margin-left: 6vw;
+        text-wrap-mode: wrap;
+
     }
  
 }

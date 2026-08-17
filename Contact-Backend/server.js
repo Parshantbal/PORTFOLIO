@@ -50,11 +50,26 @@ const ProjectInquiry =
    the setup steps below.
    ========================================================= */
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.EMAIL_USER, // your Gmail address
-    pass: process.env.EMAIL_PASS, // your Gmail App Password
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
+
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
+});
+
+// SMTP connection test
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("❌ Mailer Error:", error);
+  } else {
+    console.log("✅ Mailer Ready");
+  }
 });
 
 app.post("/api/contact", async (req, res) => {
@@ -96,41 +111,50 @@ app.post("/api/contact", async (req, res) => {
 app.post("/api/project-inquiry", async (req, res) => {
   const { name, email, projectIdea, projectType, budget, timeline, details } = req.body;
 
+  console.log("📩 Project Inquiry Received");
+
   if (!name || !email || !projectIdea || !projectType) {
-    return res.status(400).json({ success: false, error: "Please fill in the required fields." });
+    return res.status(400).json({
+      success: false,
+      error: "Please fill in the required fields.",
+    });
   }
 
   try {
-    // 1. Save to MongoDB (optional — skip if MONGO_URI not set)
     if (process.env.MONGO_URI) {
-      await ProjectInquiry.create({ name, email, projectIdea, projectType, budget, timeline, details });
+      await ProjectInquiry.create({
+        name,
+        email,
+        projectIdea,
+        projectType,
+        budget,
+        timeline,
+        details,
+      });
+
+      console.log("✅ Saved to MongoDB");
     }
 
-    // 2. Send yourself an email notification
+    console.log("📤 Sending Email...");
+
     await transporter.sendMail({
       from: `"Portfolio - Project Inquiry" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `New project inquiry from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nProject Type: ${projectType}\nBudget: ${budget || "Not specified"}\nTimeline: ${timeline || "Not specified"}\n\nProject Idea:\n${projectIdea}\n\nAdditional Details:\n${details || "—"}`,
-      html: `
-        <h3>New project inquiry from your portfolio</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Project Type:</strong> ${projectType}</p>
-        <p><strong>Budget:</strong> ${budget || "Not specified"}</p>
-        <p><strong>Timeline:</strong> ${timeline || "Not specified"}</p>
-        <p><strong>Project Idea:</strong></p>
-        <p>${projectIdea.replace(/\n/g, "<br/>")}</p>
-        <p><strong>Additional Details:</strong></p>
-        <p>${(details || "—").replace(/\n/g, "<br/>")}</p>
-      `,
+      text: `Name: ${name}`,
     });
 
-    res.json({ success: true });
+    console.log("✅ Email Sent");
+
+    return res.json({ success: true });
   } catch (err) {
-    console.error("Project inquiry error:", err.message);
-    res.status(500).json({ success: false, error: "Something went wrong. Please try again." });
+    console.error("❌ Project inquiry error:", err);
+
+    return res.status(500).json({
+      success: false,
+      error: err.message,
+    });
   }
 });
 

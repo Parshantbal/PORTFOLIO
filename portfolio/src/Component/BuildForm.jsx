@@ -104,34 +104,50 @@ const BuildForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("sending");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus("sending");
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/project-inquiry`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const apiUrl = import.meta.env.VITE_API_URL;
 
-      const data = await res.json();
-      if (!data.success) throw new Error(data.error || "Failed to send");
+    console.log("API URL:", apiUrl);
+    console.log("Form Data:", formData);
 
-      setStatus("sent");
-      setFormData({
-        name: "",
-        email: "",
-        projectIdea: "",
-        projectType: "",
-        budget: "",
-        timeline: "",
-        details: "",
-      });
-    } catch (err) {
-      setStatus("error");
+    const res = await fetch(`${apiUrl}/api/project-inquiry`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    console.log("Response Status:", res.status);
+
+    const data = await res.json();
+
+    console.log("Response Data:", data);
+
+    if (!data.success) {
+      throw new Error(data.error || "Failed to send");
     }
-  };
+
+    setStatus("sent");
+
+    setFormData({
+      name: "",
+      email: "",
+      projectIdea: "",
+      projectType: "",
+      budget: "",
+      timeline: "",
+      details: "",
+    });
+  } catch (err) {
+    console.error("PROJECT FORM ERROR:", err);
+    setStatus("error");
+  }
+};
 
   return (
     <>

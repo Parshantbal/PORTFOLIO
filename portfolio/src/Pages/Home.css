@@ -86,7 +86,7 @@
 
 .LoadingLabel {
   font-family: "font2";
-  font-size: 1.5rem;
+  font-size: 1rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #8a93a3;
@@ -107,6 +107,12 @@
 @media (max-width: 768px) {
   .LoaderWord {
     font-size: 2.2rem;
+
+  }
+
+  .LoadingLabel{
+    font-size: 1rem;
+    
   }
 }
 

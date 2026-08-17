@@ -22,10 +22,9 @@ export default function ScrollReveal() {
       const scrollable = rect.height - viewportH;
 
       const REVEAL_PORTION =
-        window.innerWidth <= 768 ? 0.65 : 0.9;
+        window.innerWidth <= 768 ? 0.65 : 0.6;
       const revealDistance = scrollable * REVEAL_PORTION;
 
-      // How far we've scrolled into the wrapper, clamped 0..1.
       let progress = -rect.top / revealDistance;
       progress = Math.min(1, Math.max(0, progress));
 
@@ -65,7 +64,7 @@ export default function ScrollReveal() {
             <About />
           </div>
 
-          {/* the blank panel that shrinks away from the top */}
+          
           <div className="curtain" ref={curtainRef} />
         </div>
       </section>

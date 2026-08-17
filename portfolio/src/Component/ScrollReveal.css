@@ -35,7 +35,7 @@
 
 .pin-wrap {
   position: relative;
-  height: 250vh;
+  height: 180vh;
 }
 
 .pin-stage {
@@ -63,7 +63,7 @@
   backface-visibility: hidden;
 }
 
-/* keep the sticky stage + its children on their own GPU layer */
+
 .pin-stage,
 .reveal-content {
   transform: translateZ(0);

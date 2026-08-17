@@ -96,6 +96,8 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("API URL:", import.meta.env.VITE_API_URL);
     setStatus("sending");
 
     try {

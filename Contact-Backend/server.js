@@ -1,19 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-import cors  from "cors";
-import nodemailer from "nodemailer";
+import cors from "cors";
+import { Resend } from "resend";
 import mongoose from "mongoose";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* =========================================================
-   OPTIONAL — save every submission to MongoDB too.
-   If you don't want this, just skip the MONGO_URI env var
-   and comment out the mongoose.connect() + Contact.create() lines.
-   ========================================================= */
+
 if (process.env.MONGO_URI) {
   mongoose
     .connect(process.env.MONGO_URI)
@@ -44,33 +40,11 @@ const projectInquirySchema = new mongoose.Schema({
 const ProjectInquiry =
   mongoose.models.ProjectInquiry || mongoose.model("ProjectInquiry", projectInquirySchema);
 
-/* =========================================================
-   Email transporter — using Gmail here. You need an
-   "App Password" (not your normal Gmail password) — see
-   the setup steps below.
-   ========================================================= */
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
 
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// SMTP connection test
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("❌ Mailer Error:", error);
-  } else {
-    console.log("✅ Mailer Ready");
-  }
-});
+
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
@@ -80,18 +54,17 @@ app.post("/api/contact", async (req, res) => {
   }
 
   try {
-    // 1. Save to MongoDB (optional — skip if MONGO_URI not set)
+
     if (process.env.MONGO_URI) {
       await Contact.create({ name, email, message });
     }
 
-    // 2. Send yourself an email notification
-    await transporter.sendMail({
-      from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // sends to yourself
-      replyTo: email, // so you can hit "Reply" and it goes to them
+ 
+    const { error } = await resend.emails.send({
+      from: `Portfolio Contact Form <${FROM_EMAIL}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: email, 
       subject: `New portfolio message from ${name}`,
-      text: `From: ${name} (${email})\n\n${message}`,
       html: `
         <h3>New message from your portfolio</h3>
         <p><strong>Name:</strong> ${name}</p>
@@ -100,6 +73,11 @@ app.post("/api/contact", async (req, res) => {
         <p>${message.replace(/\n/g, "<br/>")}</p>
       `,
     });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return res.status(500).json({ success: false, error: "Failed to send email." });
+    }
 
     res.json({ success: true });
   } catch (err) {
@@ -137,13 +115,28 @@ app.post("/api/project-inquiry", async (req, res) => {
 
     console.log("📤 Sending Email...");
 
-    await transporter.sendMail({
-      from: `"Portfolio - Project Inquiry" <${process.env.EMAIL_USER}>`,
+    const { error } = await resend.emails.send({
+      from: `Portfolio - Project Inquiry <${FROM_EMAIL}>`,
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `New project inquiry from ${name}`,
-      text: `Name: ${name}`,
+      html: `
+        <h3>New project inquiry</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Project Idea:</strong> ${projectIdea}</p>
+        <p><strong>Project Type:</strong> ${projectType}</p>
+        <p><strong>Budget:</strong> ${budget || "Not specified"}</p>
+        <p><strong>Timeline:</strong> ${timeline || "Not specified"}</p>
+        <p><strong>Details:</strong></p>
+        <p>${(details || "").replace(/\n/g, "<br/>")}</p>
+      `,
     });
+
+    if (error) {
+      console.error("❌ Resend error:", error);
+      return res.status(500).json({ success: false, error: "Failed to send email." });
+    }
 
     console.log("✅ Email Sent");
 

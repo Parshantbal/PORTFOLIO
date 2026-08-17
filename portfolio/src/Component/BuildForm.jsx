@@ -104,15 +104,18 @@ const BuildForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   setStatus("sending");
 
   try {
     const apiUrl = import.meta.env.VITE_API_URL;
 
+    console.log("================================");
     console.log("API URL:", apiUrl);
     console.log("Form Data:", formData);
+    console.log("Starting request...");
+    console.log("================================");
 
     const res = await fetch(`${apiUrl}/api/project-inquiry`, {
       method: "POST",
@@ -122,8 +125,11 @@ const BuildForm = () => {
       body: JSON.stringify(formData),
     });
 
+    console.log("Response received");
     console.log("Response Status:", res.status);
+    console.log("Response OK:", res.ok);
 
+    console.log("Before JSON parse");
     const data = await res.json();
 
     console.log("Response Data:", data);
@@ -131,6 +137,8 @@ const BuildForm = () => {
     if (!data.success) {
       throw new Error(data.error || "Failed to send");
     }
+
+    console.log("Form submitted successfully");
 
     setStatus("sent");
 
@@ -144,11 +152,14 @@ const BuildForm = () => {
       details: "",
     });
   } catch (err) {
-    console.error("PROJECT FORM ERROR:", err);
+    console.error("================================");
+    console.error("PROJECT FORM ERROR:");
+    console.error(err);
+    console.error("================================");
+
     setStatus("error");
   }
 };
-
   return (
     <>
       <div className="BuildNavSticky">

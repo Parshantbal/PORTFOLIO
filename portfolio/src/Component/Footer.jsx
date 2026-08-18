@@ -7,7 +7,7 @@ import "./Footer.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { label: "Home", href: "#home" },
+  { label: "Home", href: "#homePage" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },

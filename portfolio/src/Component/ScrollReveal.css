@@ -30,7 +30,6 @@
 
 .page-inner {
   max-width: 560px;
-
 }
 
 .pin-wrap {
@@ -41,7 +40,7 @@
 .pin-stage {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh; /* svh handles mobile browser chrome (address bar) better than vh */
   overflow: hidden;
 }
 
@@ -50,7 +49,6 @@
   inset: 0;
   overflow: hidden;
 }
-
 
 .curtain {
   position: absolute;
@@ -63,7 +61,6 @@
   backface-visibility: hidden;
 }
 
-
 .pin-stage,
 .reveal-content {
   transform: translateZ(0);
@@ -73,13 +70,4 @@
   .curtain {
     transition: none;
   }
-}
-
-@media (max-width: 768px) {
-
-  .pin-stage {
-    height: auto;
-    min-height: 100svh;
-  }
-
 }

@@ -2,6 +2,11 @@ import React, { useEffect, useRef } from "react";
 import "./ScrollReveal.css";
 import About from "./About";
 
+/* SPEED — smaller number = less scroll needed = faster reveal.
+   Same formula now applies to mobile and desktop, since About's
+   mobile layout fits within one screen and pinning works
+   consistently everywhere. */
+const REVEAL_PORTION = 0.45;
 
 export default function ScrollReveal() {
   const pinWrapRef = useRef(null);
@@ -18,11 +23,7 @@ export default function ScrollReveal() {
       const rect = wrap.getBoundingClientRect();
       const viewportH = window.innerHeight;
 
-
       const scrollable = rect.height - viewportH;
-
-      const REVEAL_PORTION =
-        window.innerWidth <= 768 ? 0.50 : 0.6;
       const revealDistance = scrollable * REVEAL_PORTION;
 
       let progress = -rect.top / revealDistance;
@@ -46,31 +47,20 @@ export default function ScrollReveal() {
       window.removeEventListener("resize", onScroll);
     };
   }, []);
-  
 
   return (
     <div className="scroll-reveal-demo">
-
-      <section className="page page--hero">
-
-
-      </section>
-
+      <section className="page page--hero"></section>
 
       <section className="pin-wrap" id="about-section" ref={pinWrapRef}>
         <div className="pin-stage">
-
           <div className="reveal-content">
             <About />
           </div>
 
-          
           <div className="curtain" ref={curtainRef} />
         </div>
       </section>
-
-
-
     </div>
   );
 }

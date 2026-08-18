@@ -23,17 +23,11 @@
     will-change: auto;
 }
 
-
-
-
 .SkillsHeader {
     width: 100%;
-
     margin-bottom: 5vh;
-
     flex-shrink: 0;
 }
-
 
 .SkillsHeader p {
     margin: 0;
@@ -49,7 +43,6 @@
     gap: 10px;
 }
 
-
 .AboutBox {
     width: 8px;
     height: 8px;
@@ -59,9 +52,6 @@
     flex-shrink: 0;
 }
 
-
-
-
 .SkillGrid {
     width: 100%;
     display: flex;
@@ -70,7 +60,6 @@
     align-items: center;
     gap: 18px;
 }
-
 
 .SkillCard {
     position: relative;
@@ -98,9 +87,6 @@
         transform 0.35s ease;
 }
 
-
-
-
 .SkillCard:hover {
     transform: translateY(-6px);
 
@@ -116,9 +102,6 @@
             transparent
         );
 }
-
-
-
 
 .SkillCardGlow {
     position: absolute;
@@ -142,13 +125,9 @@
     pointer-events: none;
 }
 
-
 .SkillCard:hover .SkillCardGlow {
     opacity: 1;
 }
-
-
-
 
 .SkillCardContent {
     position: relative;
@@ -159,9 +138,6 @@
     align-items: center;
     justify-content: center;
 }
-
-
-
 
 .SkillCardName {
     position: absolute;
@@ -174,12 +150,9 @@
     transition: opacity 0.3s ease;
 }
 
-
 .SkillCard:hover .SkillCardName {
     opacity: 0;
 }
-
-
 
 .SkillCardIcon {
     position: absolute;
@@ -205,14 +178,11 @@
         );
 }
 
-
 .SkillCard:hover .SkillCardIcon {
     opacity: 1;
 
     transform: scale(1) rotate(4deg);
 }
-
-
 
 @media (max-width: 1024px) {
 
@@ -230,38 +200,32 @@
 
     .SkillCard {
         width: 180px;
-
         height: 70px;
     }
 }
 
-
-
-
+/* =========================
+   MOBILE — pinning removed entirely. The double-scroll
+   (outer pin + inner overflow) was fighting itself and
+   leaking the next section's background through during the
+   transition. Cards are already compact, so normal document
+   flow fits everything cleanly with a single, predictable
+   scroll — no pin, no inner scrollbar.
+========================= */
 @media (max-width: 768px) {
 
     .SkillsPinWrapper {
-        height: 200svh;
+        height: auto;
     }
 
     .Skills {
-        height: 100svh;
+        position: static;
+        height: auto;
         min-height: 100svh;
+        overflow: visible;
 
         padding: 6vh 6vw;
-
-        justify-content: flex-start;
-
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .Skills::-webkit-scrollbar {
-        display: none;
-    }
-
-    .Skills {
-        scrollbar-width: none;
+        justify-content: center;
     }
 
     .SkillsHeader {
@@ -280,10 +244,8 @@
 
     .SkillGrid {
         display: grid;
-
         grid-template-columns: repeat(2, 1fr);
         gap: 14px;
-
         width: 100%;
     }
 
@@ -307,7 +269,6 @@
     }
 }
 
-
 @media (max-width: 480px) {
 
     .Skills {
@@ -316,7 +277,6 @@
 
     .SkillGrid {
         grid-template-columns: repeat(2, 1fr);
-
         gap: 10px;
     }
 
@@ -328,9 +288,6 @@
         font-size: 0.7rem;
     }
 }
-
-
-
 
 @media (max-width: 360px) {
 
@@ -350,5 +307,3 @@
         font-size: 0.65rem;
     }
 }
-
-

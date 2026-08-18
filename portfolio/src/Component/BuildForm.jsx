@@ -17,11 +17,11 @@ const BuildForm = () => {
     timeline: "",
     details: "",
   });
-  const [status, setStatus] = useState(""); // "", "sending", "sent", "error"
+  const [status, setStatus] = useState(""); 
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Split the heading into words so they can reveal one by one
+      
       const heading = pageRef.current.querySelector(".BuildHeading");
       if (heading && !heading.dataset.split) {
         const words = heading.textContent.split(" ");
@@ -63,7 +63,6 @@ const BuildForm = () => {
           "-=0.15"
         );
 
-      // subtle continuous floating glow blobs — adds ambient motion
       if (glow1Ref.current) {
         gsap.to(glow1Ref.current, {
           x: 30,
@@ -89,7 +88,7 @@ const BuildForm = () => {
     return () => ctx.revert();
   }, []);
 
-  // re-run a small entrance animation for the success screen
+
   useEffect(() => {
     if (status === "sent") {
       gsap.fromTo(
@@ -170,9 +169,7 @@ const handleSubmit = async (e) => {
         <span className="BuildGlow BuildGlow--2" ref={glow2Ref}></span>
 
         <div className="BuildInner">
-          <Link to="/" className="BuildBack">
-            &larr; Back
-          </Link>
+         
 
           {status !== "sent" && (
             <div className="BuildHeader">

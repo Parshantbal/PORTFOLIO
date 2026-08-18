@@ -29,7 +29,7 @@ const Navbar = () => {
         window.open("/Parshant_Bal_Resume.pdf", "_blank");
     };
 
-   
+
     const goToSection = (e, id, isAbout = false) => {
         e.preventDefault();
         closeMenu();
@@ -92,6 +92,7 @@ const Navbar = () => {
                     <div className="logoName">Parshant Bal</div>
                 </div>
 
+                <a href="/" onClick={goHome}>Home</a>
                 <a href="#projects" onClick={(e) => goToSection(e, "projects")}>Project</a>
                 <a href="#skills" onClick={(e) => goToSection(e, "skills")}>Skill</a>
                 <a href="#about-section" onClick={(e) => goToSection(e, "about-section", true)}>About</a>

@@ -22,12 +22,12 @@
     margin: 0;
 }
 
-.AboutBox {
-    width: 8px;
-    height: 8px;
+.AboutBox2 {
+    width: 9px;
+    height: 9px;
 
-    border: 1.5px solid #8A3534;
-    background-color:#E9E8D5;
+   
+    background-color: #E9E8D5;;
 
     display: block;
 }
@@ -102,6 +102,16 @@
         justify-content: center;
         overflow: hidden;
     }
+    .AboutBox2 {
+    width: 8px;
+    height: 8px;
+    margin-bottom: 2.8vh;
+
+   
+    background-color: #E9E8D5;;
+
+    display: block;
+}
 
     .AboutSection p {
 

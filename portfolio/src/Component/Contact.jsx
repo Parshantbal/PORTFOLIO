@@ -120,9 +120,9 @@ const Contact = () => {
   return (
     <section className="Contact" id="contact" ref={sectionRef}>
       <div className="ContactGrid">
-        {/* LEFT — big heading + icon row */}
+       
         <div className="ContactLeft">
-          <h1 className="ContactBigHeading">
+          <h1 className="ContactBigHeading " >
             Let's<br />Connect
           </h1>
 

@@ -6,7 +6,7 @@ const About = () => {
     <section className="About" >
 
       <div className="AboutSection">
-        <span className="AboutBox"></span>
+        <span className="AboutBox2"></span>
         <p>ABOUT ME</p>
       </div>
 

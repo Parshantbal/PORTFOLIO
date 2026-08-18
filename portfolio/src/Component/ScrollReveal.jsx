@@ -2,10 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "./ScrollReveal.css";
 import About from "./About";
 
-/* SPEED — smaller number = less scroll needed = faster reveal.
-   Same formula now applies to mobile and desktop, since About's
-   mobile layout fits within one screen and pinning works
-   consistently everywhere. */
+
 const REVEAL_PORTION = 0.45;
 
 export default function ScrollReveal() {

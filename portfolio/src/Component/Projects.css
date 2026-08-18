@@ -197,6 +197,10 @@
     .Projects {
         padding: 8vh 6vw;
     }
+    .AboutBox{
+        margin-bottom: 3vh;
+      
+    }
 
     .ProjectList {
         gap: 8vh;

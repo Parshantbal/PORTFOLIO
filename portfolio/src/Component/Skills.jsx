@@ -132,7 +132,7 @@ const Skills = () => {
       >
         <div className="SkillsHeader">
           <div className="AboutSection">
-            <span className="AboutBox"></span>
+            <span className="AboutBox1"></span>
 
             <p>SKILLS</p>
           </div>

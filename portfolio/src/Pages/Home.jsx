@@ -3,7 +3,7 @@ import gsap from "gsap";
 import "./Home.css";
 
 const WORD = "PARSHANT";
-const CONVERGE_INDEX = WORD.indexOf("H"); // letters converge onto this letter
+const CONVERGE_INDEX = WORD.indexOf("H"); 
 
 export default function Home({ setLoading }) {
   const [count, setCount] = useState(0);
@@ -28,8 +28,7 @@ export default function Home({ setLoading }) {
       }, 80);
     }
 
-    // Measure each letter's position relative to "H" so we can
-    // animate them sliding to converge exactly onto it.
+   
     const hEl = lettersRef.current[CONVERGE_INDEX];
     const hRect = hEl.getBoundingClientRect();
     const hCenter = hRect.left + hRect.width / 2;
@@ -42,17 +41,15 @@ export default function Home({ setLoading }) {
 
     const tl = gsap.timeline({ delay: 0.4 });
 
-    // PHASE 1 — "PARSHANT" fades in with visible letter spacing.
+  
     tl.fromTo(
       lettersRef.current,
       { opacity: 0, y: 15 },
       { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.04 }
     )
-      .to({}, { duration: 0.6 }) // hold so the full word registers clearly
+      .to({}, { duration: 0.6 }) 
 
-      // PHASE 2 — every letter slides toward "H" while shrinking
-      // and fading out, so they dissolve cleanly into the point
-      // instead of visually piling up as solid overlapping glyphs.
+  
       .to(lettersRef.current, {
         x: (i) => deltas[i],
         scale: 0.25,
@@ -62,8 +59,7 @@ export default function Home({ setLoading }) {
         stagger: { each: 0.035, from: CONVERGE_INDEX },
       })
 
-      // PHASE 3 — letters have already dissolved by now, so this
-      // is just a quick final cleanup before the badge pops in.
+     
       .to(wordRef.current, {
         opacity: 0,
         duration: 0.1,

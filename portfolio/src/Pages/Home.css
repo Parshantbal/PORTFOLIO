@@ -10,7 +10,8 @@
   height: 100vh;
   z-index: 9999;
 
-  background-color: #E9E8D5;
+  background-color: #8A3534;
+
 
 
   display: flex;
@@ -64,9 +65,7 @@
   gap: 3vh;
 }
 
-/* PARSHANT appears with wide letter spacing, then every letter
-   slides inward and converges onto "H" — the collapsed point
-   then shrinks away as the PB badge appears in its place. */
+
 .OverlapStage {
   position: relative;
   min-width: 340px;
@@ -85,12 +84,12 @@
   text-transform: uppercase;
   white-space: nowrap;
   font-size: 3.2rem;
-  color: #8A3534;
+  color: #E9E8D5;
 }
 
 .OverlapLetter {
   display: inline-block;
-  margin-right: 16px; /* the visible letter spacing */
+  margin-right: 16px; 
   will-change: transform, opacity;
 }
 
@@ -98,7 +97,7 @@
   margin-right: 0;
 }
 
-/* the PB badge — matches the Navbar logo exactly */
+
 .PBBadge {
   position: absolute;
   top: 50%;
@@ -109,7 +108,7 @@
   height: 72px;
 
   background-color: #8A3534;
-  border: 2px solid #000;
+  border: 3px solid #000;
   box-shadow: 6px 6px 0px #000;
 
   display: flex;
@@ -122,7 +121,7 @@
   font-family: "font1";
   font-weight: 900;
   font-size: 1.7rem;
-  color: #E9E8D5;
+  color:#E9E8D5;
 }
 
 .loading {
@@ -137,7 +136,7 @@
   font-family: "font1";
   font-size: 1.6rem;
   font-weight: 700;
-  color: #8A3534;
+  color:#E9E8D5;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   text-shadow: 0 0 18px rgba(138, 53, 52, 0.35);
@@ -157,12 +156,11 @@
   position: relative;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, transparent, #8A3534, #d98b8a);
+  background: #E9E8D5;
   border-radius: 999px;
 }
 
-/* a small glowing dot that rides the leading edge of the fill —
-   a subtle premium detail rather than a flat bar */
+
 .LoaderBarGlowDot {
   position: absolute;
   right: -2px;
@@ -171,7 +169,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #E9E8D5;
+  background-color:#8A3534;
   box-shadow: 0 0 8px 2px rgba(233, 232, 213, 0.7), 0 0 16px 4px rgba(138, 53, 52, 0.6);
 }
 

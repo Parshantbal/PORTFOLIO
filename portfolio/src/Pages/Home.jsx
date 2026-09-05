@@ -2,48 +2,96 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "./Home.css";
 
+const WORD = "PARSHANT";
+const CONVERGE_INDEX = WORD.indexOf("H"); // letters converge onto this letter
+
 export default function Home({ setLoading }) {
   const [count, setCount] = useState(0);
   const loaderRef = useRef(null);
+  const badgeRef = useRef(null);
+  const wordRef = useRef(null);
   const lettersRef = useRef([]);
+  const barFillRef = useRef(null);
   const hasExited = useRef(false);
 
-  const word = "PARSHANT";
-
   useEffect(() => {
-    gsap.fromTo(
+    function startCounting() {
+      let start = 0;
+      const interval = setInterval(() => {
+        start += 10;
+        if (start >= 100) {
+          setCount(100);
+          clearInterval(interval);
+        } else {
+          setCount(start);
+        }
+      }, 80);
+    }
+
+    // Measure each letter's position relative to "H" so we can
+    // animate them sliding to converge exactly onto it.
+    const hEl = lettersRef.current[CONVERGE_INDEX];
+    const hRect = hEl.getBoundingClientRect();
+    const hCenter = hRect.left + hRect.width / 2;
+
+    const deltas = lettersRef.current.map((el) => {
+      const rect = el.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+      return hCenter - center;
+    });
+
+    const tl = gsap.timeline({ delay: 0.4 });
+
+    // PHASE 1 — "PARSHANT" fades in with visible letter spacing.
+    tl.fromTo(
       lettersRef.current,
-      { y: 60, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power4.out",
-        stagger: 0.08,
-        delay: 0.2,
-      }
-    );
-  }, []);
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.04 }
+    )
+      .to({}, { duration: 0.6 }) // hold so the full word registers clearly
 
+      // PHASE 2 — every letter slides toward "H" while shrinking
+      // and fading out, so they dissolve cleanly into the point
+      // instead of visually piling up as solid overlapping glyphs.
+      .to(lettersRef.current, {
+        x: (i) => deltas[i],
+        scale: 0.25,
+        opacity: 0,
+        duration: 0.85,
+        ease: "power2.in",
+        stagger: { each: 0.035, from: CONVERGE_INDEX },
+      })
+
+      // PHASE 3 — letters have already dissolved by now, so this
+      // is just a quick final cleanup before the badge pops in.
+      .to(wordRef.current, {
+        opacity: 0,
+        duration: 0.1,
+      })
+      .fromTo(
+        badgeRef.current,
+        { scale: 0, rotate: -25, opacity: 0 },
+        { scale: 1, rotate: 0, opacity: 1, duration: 0.5, ease: "back.out(2.2)" },
+        "<"
+      )
+      .fromTo(
+        ".loading",
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+      )
+      .call(startCounting);
+  }, []);
 
   useEffect(() => {
-    let start = 0;
+    if (barFillRef.current) {
+      gsap.to(barFillRef.current, {
+        width: `${count}%`,
+        duration: 0.3,
+        ease: "power1.out",
+      });
+    }
+  }, [count]);
 
-    const interval = setInterval(() => {
-      start += 10;
-
-      if (start >= 100) {
-        setCount(100);
-        clearInterval(interval);
-      } else {
-        setCount(start);
-      }
-    }, 80);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  
   useEffect(() => {
     if (count === 100 && !hasExited.current) {
       hasExited.current = true;
@@ -53,21 +101,15 @@ export default function Home({ setLoading }) {
         onComplete: () => setLoading(false),
       });
 
-      tl.to(lettersRef.current, {
-        y: 80,
+      tl.to(badgeRef.current, {
+        scale: 1.5,
         opacity: 0,
-        duration: 0.5,
-        ease: "power3.in",
-        stagger: 0.05,
+        duration: 0.4,
+        ease: "power2.in",
       })
         .to(
           ".loading",
-          {
-            y: 40,
-            opacity: 0,
-            duration: 0.4,
-            ease: "power3.in",
-          },
+          { y: 40, opacity: 0, duration: 0.4, ease: "power3.in" },
           "<"
         )
         .to(loaderRef.current, {
@@ -81,23 +123,34 @@ export default function Home({ setLoading }) {
   return (
     <div className="loader" ref={loaderRef}>
       <div className="LoaderGlow"></div>
+      <div className="LoaderGrid"></div>
 
       <div className="content">
-        <h1 className="LoaderWord">
-          {word.split("").map((letter, i) => (
-            <span
-              key={i}
-              className="LoaderLetter"
-              ref={(el) => (lettersRef.current[i] = el)}
-            >
-              {letter}
-            </span>
-          ))}
-        </h1>
+        <div className="OverlapStage">
+          <span className="OverlapWord" ref={wordRef}>
+            {WORD.split("").map((letter, i) => (
+              <span
+                key={i}
+                className="OverlapLetter"
+                ref={(el) => (lettersRef.current[i] = el)}
+              >
+                {letter}
+              </span>
+            ))}
+          </span>
+
+          <div className="PBBadge" ref={badgeRef}>
+            <span>PB</span>
+          </div>
+        </div>
 
         <div className="loading">
-          <span className="LoadingLabel">Loading</span>
           <span className="LoadingPercent">{count}%</span>
+          <div className="LoaderBarTrack">
+            <div className="LoaderBarFill" ref={barFillRef}>
+              <span className="LoaderBarGlowDot"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
